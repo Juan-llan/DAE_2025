@@ -1,7 +1,7 @@
 .navbar {
   background-color: #282c34;
   padding: 15px 20px;
-  color: white;
+  color: rgb(243, 243, 243);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +9,13 @@
 
 .navbar h1 {
   margin: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #282c34;
+  color: #ffffff;
+  margin: 0;
+  display: block;
 }
 
 .nav-links {

@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Sales from './pages/Sales';
 import Clients from './pages/Clients';
 import Login from './pages/Login';
+import SalesReport from './pages/Salesreport';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <li><Link to="/sales">Ventas</Link></li>
             <li><Link to="/clients">Clientes</Link></li>
             <li><Link to="/login">Login</Link></li>
+            <li><Link to="/salesreport">Informe de Ventas</Link></li>
           </ul>
         </nav>
 
@@ -27,6 +29,8 @@ function App() {
             <Route path="/sales" element={<Sales />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/salesreport" element={<SalesReport />} />
+            {/* Puedes agregar más rutas aquí */}
           </Routes>
         </div>
       </div>

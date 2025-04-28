@@ -10,7 +10,7 @@
   .clients-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: rgb(23, 21, 21);
+    background-color: rgb(35, 30, 30);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border-radius: 12px;
     overflow: hidden;
