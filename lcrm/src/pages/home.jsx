@@ -16,7 +16,7 @@ function Home() {
         </div>
         <div className="card">
           <h3>Ventas del Mes</h3>
-          <p>$4,560</p>
+          <p>$4,50</p>
         </div>
       </div>
     </div>
