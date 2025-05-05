@@ -1,34 +1,75 @@
 .clients-container {
-    padding: 20px;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .clients-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: rgb(35, 30, 30);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  
-  .clients-table th,
-  .clients-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #050404;
-  }
-  
-  .clients-table th {
-    background-color: #f4f6f8;
-    color: #333;
-  }
-  
-  .clients-table tr:hover {
-    background-color: #f9fbfc;
-  }
-  
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: #3b3f48;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.client-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #4a4e57;
+  color: white;
+}
+
+.client-form button {
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.client-form button:hover {
+  background-color: #45a049;
+}
+
+.clients-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.clients-list li {
+  background: #3a3f47;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clients-list button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clients-list button:hover {
+  background-color: #d32f2f;
+}
+
+.error-msg {
+  color: #f44336;
+}
+
+.success-msg {
+  color: #4caf50;
+}

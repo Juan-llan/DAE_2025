@@ -1,30 +1,60 @@
-import './Salesreport.css';
-import { useState } from 'react';
+import './SalesReport.css';
+import { useEffect, useState } from 'react';
 
 function SalesReport() {
-  const [filter, setFilter] = useState('fecha');
+  const [sales, setSales] = useState([]);
+  const [formData, setFormData] = useState({
+    cliente: '',
+    producto: '',
+    vendedor: '',
+    fecha: '',
+    total: ''
+  });
 
-  const salesData = [
-    { cliente: 'Juan Pérez', producto: 'Zapatos', vendedor: 'Ana', fecha: '2025-04-15', total: '$120' },
-    { cliente: 'Laura Gómez', producto: 'Bolso', vendedor: 'Carlos', fecha: '2025-04-18', total: '$80' },
-    { cliente: 'Mario Ruiz', producto: 'Camisa', vendedor: 'Ana', fecha: '2025-04-20', total: '$45' },
-  ];
+  // Cargar ventas desde localStorage al iniciar
+  useEffect(() => {
+    const savedSales = JSON.parse(localStorage.getItem('ventas')) || [];
+    setSales(savedSales);
+  }, []);
+
+  // Guardar ventas en localStorage cuando cambien
+  useEffect(() => {
+    localStorage.setItem('ventas', JSON.stringify(sales));
+  }, [sales]);
+
+  // Manejar cambio en formulario
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  // Crear nueva venta
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSales([...sales, formData]);
+    setFormData({ cliente: '', producto: '', vendedor: '', fecha: '', total: '' });
+  };
+
+  // Eliminar venta por índice
+  const handleDelete = (index) => {
+    const updated = sales.filter((_, i) => i !== index);
+    setSales(updated);
+  };
 
   return (
     <div className="report-container">
-      <h2>Informe de Ventas</h2>
+      <h2>Informe de Ventas (Simulado)</h2>
 
-      {/* Filtro */}
-      <div className="filter-container">
-        <label htmlFor="filter">Filtrar por:</label>
-        <select id="filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
-          <option value="fecha">Fecha</option>
-          <option value="vendedor">Vendedor</option>
-          <option value="producto">Producto</option>
-        </select>
-      </div>
+      {/* Formulario para crear nueva venta */}
+      <form className="sales-form" onSubmit={handleSubmit}>
+        <input type="text" name="cliente" placeholder="Cliente" value={formData.cliente} onChange={handleChange} required />
+        <input type="text" name="producto" placeholder="Producto" value={formData.producto} onChange={handleChange} required />
+        <input type="text" name="vendedor" placeholder="Vendedor" value={formData.vendedor} onChange={handleChange} required />
+        <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} required />
+        <input type="text" name="total" placeholder="Total" value={formData.total} onChange={handleChange} required />
+        <button type="submit">Agregar Venta</button>
+      </form>
 
-      {/* Tabla de Ventas */}
+      {/* Tabla de ventas */}
       <table className="sales-table">
         <thead>
           <tr>
@@ -33,28 +63,27 @@ function SalesReport() {
             <th>Vendedor</th>
             <th>Fecha</th>
             <th>Total</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {salesData.map((sale, index) => (
+          {sales.map((sale, index) => (
             <tr key={index}>
               <td>{sale.cliente}</td>
               <td>{sale.producto}</td>
               <td>{sale.vendedor}</td>
               <td>{sale.fecha}</td>
               <td>{sale.total}</td>
+              <td>
+                <button onClick={() => handleDelete(index)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Botones de exportación */}
-      <div className="export-buttons">
-        <button onClick={() => alert('Exportar a PDF')}>Exportar PDF</button>
-        <button onClick={() => alert('Exportar a Excel')}>Exportar Excel</button>
-      </div>
     </div>
   );
 }
 
 export default SalesReport;
+
