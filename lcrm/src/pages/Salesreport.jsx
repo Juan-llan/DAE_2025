@@ -1,4 +1,4 @@
-import './SalesReport.css';
+import './Salesreport.css';
 import { useEffect, useState } from 'react';
 
 function SalesReport() {
